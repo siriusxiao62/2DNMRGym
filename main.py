@@ -23,9 +23,9 @@ from eval import eval_model
 
 def main(args):
 
-    nmr_path = '/scratch0/yunruili/HSQC_data/all_annotation_data/nmr'
-    graph_path = '/scratch0/yunruili/HSQC_data/all_annotation_data/graph'
-    csv_file = '/scratch0/yunruili/HSQC_data/all_annotated_files.csv'
+    nmr_path = 'HSQC_data/all_annotation_data/nmr'
+    graph_path = 'HSQC_data/all_annotation_data/graph'
+    csv_file = 'HSQC_data/all_annotated_files.csv'
 
     dataset = Graph_NMR_data(csv_file, graph_path, nmr_path)
     # dataset = DataLoader(data, batch_size=2, shuffle=False, collate_fn=custom_collate_fn)

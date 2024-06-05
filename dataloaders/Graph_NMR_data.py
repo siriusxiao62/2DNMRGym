@@ -52,19 +52,3 @@ def custom_collate_fn(batch):
     batched_hnmr_data = torch.cat([data for data in h_peaks], dim=0)
 
     return batched_graph, batched_cnmr_data, batched_hnmr_data, filenames
-
-
-# nmr_path = '/Users/siriusxiao/Documents/Github/2dNMR_annotation_data/HSQC_data/good_annotation/nmr'
-# graph_path = '/Users/siriusxiao/Documents/Github/2dNMR_annotation_data/HSQC_data/good_annotation/graph'
-# csv_file = '/Users/siriusxiao/Documents/Github/2dNMR_annotation_data/HSQC_data/good_annotation.csv'
-
-# data = Graph_NMR_data(csv_file, graph_path, nmr_path)
-# dataset = DataLoader(data, batch_size=2, shuffle=False, collate_fn=custom_collate_fn)
-# for graph_data, cnmr_data, hnmr_data, filename in dataset:
-#     # print(graph_data.pos.shape)
-#     # print(graph_data.x.shape)
-#     print(cnmr_data.shape)
-#     print(hnmr_data.shape)
-#     print(cnmr_data)
-#     print(hnmr_data)
-#     break
