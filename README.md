@@ -1,5 +1,10 @@
 # Mol2DNMR
-Official code and data of paper: Mol2DNMR: An Annotated Experimental Dataset for Advancing Molecular Representation Learning in 2D NMR Analysis
+Official code and data of paper: Mol2DNMR: An Annotated Experimental Dataset for Advancing Molecular Representation Learning in 2D NMR Analysis.
+
+The dataset contains ~20,000 molecules with their molecular graphs, SMILES strings, and the cross peak locations in the HSQC spectrum. The csv file, `all_annotations.csv` is a list of all molecules included.
+
+![Dataset Overview](figures/database.png)
+
 
 
 ## Requirements and Installation
