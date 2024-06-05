@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import time
+import torch.nn.functional as F
 
 def train_model(model, dataloaders, optimizer, scheduler, checkpoint_path, num_epochs=1):
     best_loss = 1e10
@@ -32,7 +33,7 @@ def train_model(model, dataloaders, optimizer, scheduler, checkpoint_path, num_e
                 with torch.set_grad_enabled(phase == 'train'):
                     [c_shifts, h_shifts], c_idx = model(graph)
                     
-                    loss = nn.MSELoss()(c_shifts, cnmr) + nn.MSELoss()(h_shifts, hnmr)
+                    loss = F.l1_loss(c_shifts, cnmr) + F.l1_loss(h_shifts, hnmr)
                     loss *= 100
                     epoch_loss += loss
                     # print(loss)
