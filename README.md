@@ -49,7 +49,7 @@ sbatch eval.sh
 ```
 This file evaluates all the checkpoints in a provided folder, and create a csv file to record all MAE results. 
 
-## Results
+## Baseline Models
 5 models are tested on Mol2DNMR dataset, they are listed below  along with their publication year and links to the related papers.
 
 | Name      | Year | Related Paper                                         |
