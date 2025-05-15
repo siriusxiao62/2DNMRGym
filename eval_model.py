@@ -53,10 +53,11 @@ args = args.parse_args()
 
 args.use_solvent = True
 
-dataset = load_data_from_huggingface(split='test')
+split = 'eval'
+dataset = load_data_from_huggingface(split=split)
 dataset = DataLoader(dataset, batch_size=1, shuffle=False)
 
-model_folder = './experiments'
+model_folder = './experiment/comenet'
 rslt = []
 
 # trans_gin_b32_solventCH_sum_hiddendim_256_ngnn_2_dmodel_128_nhead_2_dff_256_ntrans_3_couthidden_25664_houthidden_25664_solventdimch_1616_seed_0.pt
@@ -70,7 +71,7 @@ for m in model_list:
     comps = name.split('_') 
     # model spec
     if comps[0] == 'trans':
-        save_file = 'eval_rslt_trans_gcn.csv'
+        save_file = 'eval_rslt_trans.csv'
         cols = ['batch_size', 'type', 'num_layers', 'hidden_channels', 'c_out_hidden', 'h_out_hidden', 'c_sol_emb_dim', 'h_sol_emb_dim',\
          'd_model', 'nhead', 'd_ff', 'num_trans_layers', 'seed', 'closs', 'hloss']
         batch_size = int(comps[2][1:])
@@ -120,7 +121,7 @@ for m in model_list:
             print(tmp)
 
     else: 
-        save_file = 'eval_rslt.csv'
+        save_file = 'eval_rslt_comenet_%s.csv'%split
         cols = ['batch_size', 'type', 'num_layers', 'hidden_channels', 'c_out_hidden', 'h_out_hidden', 'c_sol_emb_dim', 'h_sol_emb_dim',\
          'num_output_layers', 'num_filters', 'num_gaussians', 'seed', 'closs', 'hloss']
         
@@ -189,7 +190,7 @@ for m in model_list:
 
         c_loss, h_loss = eval_model(model, dataset)
 
-        tmp = [batch_size, type, num_layers, hidden_channels, c_out_hidden, h_out_hidden, c_sol_emb_dim, h_sol_emb_dim, num_output_layers, num_filters, num_gaussians, c_loss.detach().cpu().numpy().item(), h_loss.detach().cpu().numpy().item()]
+        tmp = [batch_size, type, num_layers, hidden_channels, c_out_hidden, h_out_hidden, c_sol_emb_dim, h_sol_emb_dim, num_output_layers, num_filters, num_gaussians, seed, c_loss.detach().cpu().numpy().item(), h_loss.detach().cpu().numpy().item()]
         rslt.append(tmp)
 
         print(ckpt_path)
