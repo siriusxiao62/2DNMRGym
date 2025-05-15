@@ -18,18 +18,17 @@ def eval_model(model, dataloader):
     total_loss_h = 0
     print(len(dataloader))
     with torch.no_grad():
-        for batch in dataloader:
-            graph, cnmr, hnmr, filename = batch
-            # print(filename)
+        for graph in dataloader:
             graph = graph.cuda()
-            cnmr = cnmr.cuda()
-            hnmr = hnmr.cuda()
 
             with torch.cuda.amp.autocast():
-                [c_shifts, h_shifts], c_idx = model(graph)
-                    
-                c_loss = F.l1_loss(c_shifts, cnmr) * 200
-                h_loss = F.l1_loss(h_shifts, hnmr) * 10
+                try:
+                    [c_shifts, h_shifts], c_idx = model(graph)
+                except:
+                    continue
+ 
+                c_loss = F.l1_loss(c_shifts, graph.cnmr) * 200
+                h_loss = F.l1_loss(h_shifts, graph.hnmr) * 10
                 total_loss_c += c_loss
                 total_loss_h += h_loss
             # print(loss)
