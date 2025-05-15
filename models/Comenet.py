@@ -34,6 +34,7 @@ from scipy import special as sp
 
 from scipy.special import binom
 from torch_geometric.nn.models.schnet import GaussianSmearing
+from torch_geometric.typing import OptPairTensor, Adj, OptTensor
 
 
 def Jn(r, n):

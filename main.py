@@ -1,16 +1,9 @@
 # %%
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
 import torch.optim as optim
 from torch.optim import lr_scheduler
 from load_huggingface_data import load_data_from_huggingface
 from sklearn.model_selection import train_test_split
 from torch_geometric.data import DataLoader
-import time
-import matplotlib.pyplot as plt
-import numpy as np
-import pickle
 import argparse
 import os
 from models.GNN2d import GNNNodeEncoder
@@ -19,7 +12,7 @@ from models.NMRModel import NodeEncodeInterface
 from models.Schnet import SchNet
 from models.gnn_transformer import GNNTransformer
 from train import train_model
-from eval import eval_model
+
 
 
 def main(args):
@@ -133,7 +126,7 @@ if __name__ == '__main__':
     
     args = args.parse_args()
 
-    print(args.notransformer)
+    print('use transformer: ', args.notransformer)
 
     args.use_solvent = True
 

@@ -53,11 +53,14 @@ args = args.parse_args()
 
 args.use_solvent = True
 
-split = 'eval'
+split = 'eval' # use one of: eval, eval_fewshot, eval_zeroshot
 dataset = load_data_from_huggingface(split=split)
 dataset = DataLoader(dataset, batch_size=1, shuffle=False)
 
-model_folder = './experiment/comenet'
+model_folder = './checkpoints/'
+subfolder = 'comenet'
+
+model_folder = os.path.join(model_folder, subfolder)
 rslt = []
 
 # trans_gin_b32_solventCH_sum_hiddendim_256_ngnn_2_dmodel_128_nhead_2_dff_256_ntrans_3_couthidden_25664_houthidden_25664_solventdimch_1616_seed_0.pt
@@ -71,7 +74,7 @@ for m in model_list:
     comps = name.split('_') 
     # model spec
     if comps[0] == 'trans':
-        save_file = 'eval_rslt_trans.csv'
+        save_file = 'rslt_trans_%s_%s.csv'%(subfolder, split)
         cols = ['batch_size', 'type', 'num_layers', 'hidden_channels', 'c_out_hidden', 'h_out_hidden', 'c_sol_emb_dim', 'h_sol_emb_dim',\
          'd_model', 'nhead', 'd_ff', 'num_trans_layers', 'seed', 'closs', 'hloss']
         batch_size = int(comps[2][1:])
@@ -121,7 +124,7 @@ for m in model_list:
             print(tmp)
 
     else: 
-        save_file = 'eval_rslt_comenet_%s.csv'%split
+        save_file = 'rslt__%s_%s.csv'%(subfolder, split)
         cols = ['batch_size', 'type', 'num_layers', 'hidden_channels', 'c_out_hidden', 'h_out_hidden', 'c_sol_emb_dim', 'h_sol_emb_dim',\
          'num_output_layers', 'num_filters', 'num_gaussians', 'seed', 'closs', 'hloss']
         

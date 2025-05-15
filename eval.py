@@ -1,9 +1,5 @@
 import torch
-import torch.nn as nn
 import time
-from rdkit import Chem
-from gen_graph_from_smiles import smiles_to_pyg_graph_2d, smiles_to_pyg_graph_3d
-from torch_geometric.data import Data, Batch
 import torch.nn.functional as F
 
 
@@ -43,23 +39,7 @@ def eval_model(model, dataloader):
 
     return total_loss_c, total_loss_h
 
-def eval_one_molecule(model, smile, solvent, type='2d'):
-    mol = Chem.MolFromSmiles(smile)
-    if type=='2d':
-        mol_graph = smiles_to_pyg_graph_2d(mol)
-    else:
-        mol_graph = smiles_to_pyg_graph_2d(mol, max_attempts=5)
-    mol_graph.has_c = True
-    mol_graph.has_h = True
-    mol_graph.batch = torch.zeros([len(mol_graph.x)], dtype=int)
-    mol_graph.solvent_class = solvent
-    mol_graph_list = [mol_graph]  # Since it's just one molecule, we wrap it in a list
-    mol_graph_batch = Batch.from_data_list(mol_graph_list)
-    # make prediction
-    [c_shifts, h_shifts], ch_idx = model(mol_graph_batch)
-    # cnmr = gt[['C']].values()
-    # hnmr = gt[['H1', 'H2']].values()
-    # loss = nn.MSELoss()(c_shifts, cnmr) + nn.MSELoss()(h_shifts, hnmr)
-    return c_shifts, h_shifts, ch_idx
+
+
 
     
