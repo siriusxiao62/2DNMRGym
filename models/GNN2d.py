@@ -83,7 +83,6 @@ class GNNNodeEncoder(torch.nn.Module):
 
     def forward(self, batch):
         x, edge_index, edge_attr, b = batch.x, batch.edge_index, batch.edge_attr, batch.batch
-
         edge_index = add_self_loops(edge_index, num_nodes=x.size(0))
         self_loop_attr = torch.zeros(x.size(0), 2)
         self_loop_attr[:, 0] = 4
