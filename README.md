@@ -32,12 +32,14 @@ The pipeline is set up for 5 GNN models for representation learning: GCN, GIN, G
 
 To train the model, run either: 
 ```
-python main.py --batch_size 64 --type gin --hidden_channels 512 --num_layers 5 --c_sol_emb_dim 32 --h_sol_emb_dim 16
+python main.py --notransformer  --n_epoch 150 --type gin --hidden_channels 512 --num_layers 5 --c_sol_emb_dim 16 --h_sol_emb_dim 16
 ```
+
+"notransformer" runs GNN-only model. Without this specification, transformer module is activated.
 
 or 
 ```
-sbatch run.sh 64 gin 512 5 32 16
+sbatch run_gnn.sh 150 gin 512 5 16 16
 ```
 
 ### Evaluating the Model 
