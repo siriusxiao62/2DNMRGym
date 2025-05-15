@@ -1,7 +1,7 @@
 # Mol2DNMR
 Official code and data of paper: Mol2DNMR: An Annotated Experimental Dataset for Advancing Molecular Representation Learning in 2D NMR Analysis.
 
-The dataset is available by downloading the `data.zip` file. It contains 22,157 molecules with their molecular graphs, SMILES strings, and the cross peak locations in the HSQC spectrum. The csv file, `all_annotations.csv` is a list of all molecules included. 
+The 2DNMRGym data is hosted on huggingface. Dataset is loaded using ```load_huggingface_data.py```. The eval, eval_fewshot and eval_zeroshot data is also saved in the ```dataset``` folder. All training and evaluation dataset contains over 22,000 molecules with their molecular graphs, SMILES strings, and the cross peak locations in the HSQC spectrum. 
 
 ![Dataset Overview](figures/database.png)
 
@@ -27,17 +27,20 @@ conda install -c conda-forge rdkit
 pip intall argparse
 ```
 ## Usage
+
 ### Training the Model
 The pipeline is set up for 5 GNN models for representation learning: GCN, GIN, GAT, ComENet, SchNet. GNN transformer models such as GCN-transformer, GIN-transformer and GAT-transformer is also included. To use other models, you can simply add the GNN encoder to the `/models` directory. The GNN encoder class should return the node representations.
 
 To train the model, run either: 
 ```
-python main.py --batch_size 64 --type gin --hidden_channels 512 --num_layers 5 --c_sol_emb_dim 32 --h_sol_emb_dim 16
+python main.py --notransformer  --n_epoch 150 --type gin --hidden_channels 512 --num_layers 5 --c_sol_emb_dim 16 --h_sol_emb_dim 16
 ```
+
+"notransformer" runs GNN-only model. Without this specification, transformer module is activated.
 
 or 
 ```
-sbatch run.sh 64 gin 512 5 32 16
+sbatch run_gnn.sh 150 gin 512 5 16 16
 ```
 
 ### Evaluating the Model 
