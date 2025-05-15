@@ -1,8 +1,6 @@
-#!/bin/bash -l
-#SBATCH --job-name=2d
-#SBATCH --qos=medium
-#SBATCH --time=72:00:00
-#SBATCH --gres=gpu:V100:1
-#SBATCH --output ./slurm_output/2d-%j.out
+#!/bin/bash
+#SBATCH --job-name=2dgnn
+#SBATCH --output=slurm_out/2dgnn_%j.out
+#SBATCH --gres=gpu:1
 
-python main.py --batch_size $1 --type $2 --hidden_channels $3 --num_layers $4 --c_sol_emb_dim $5 --h_sol_emb_dim $6
+python main.py --notransformer  --n_epoch 150 --type $1 --hidden_channels $2 --num_layers $3 --c_sol_emb_dim $4 --h_sol_emb_dim $5
