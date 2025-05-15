@@ -28,9 +28,7 @@ pip intall argparse
 ```
 ## Usage
 ### Training the Model
-The pipeline is set up for 5 GNN models for representation learning: GCN, GIN, GAT, ComENet, SchNet. To use other models, you can simply add the GNN encoder to the `/models` directory. The GNN encoder class should return the node representations.
-
-Three bash files are provided: run.sh for 2D GNN models, run_schenet.sh for SchNet, run_comenet.sh for ComENet. 
+The pipeline is set up for 5 GNN models for representation learning: GCN, GIN, GAT, ComENet, SchNet. GNN transformer models such as GCN-transformer, GIN-transformer and GAT-transformer is also included. To use other models, you can simply add the GNN encoder to the `/models` directory. The GNN encoder class should return the node representations.
 
 To train the model, run either: 
 ```
@@ -64,5 +62,6 @@ This file evaluates all the checkpoints in a provided folder, and create a csv f
 | GAT       | 2017 | [Graph Attention Networks](https://arxiv.org/pdf/1710.10903)          |
 | ComENet   | 2022 | [ComENet: Towards Complete and Efficient Message Passing for 3D Molecular Graphs](https://arxiv.org/pdf/2206.08515)          |
 | SchNet    | 2018 | [SchNet - a deep learning architecture for molecules and materials](https://arxiv.org/pdf/1712.06113)          |
+| GNNTrans  | 2022 | [Representing Long-Range Context for Graph Neural Networks with Global Attention](https://arxiv.org/abs/2201.08821) |
 
 
