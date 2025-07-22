@@ -67,4 +67,10 @@ This file evaluates all the checkpoints in a provided folder, and create a csv f
 | SchNet    | 2018 | [SchNet - a deep learning architecture for molecules and materials](https://arxiv.org/pdf/1712.06113)          |
 | GNNTrans  | 2022 | [Representing Long-Range Context for Graph Neural Networks with Global Attention](https://arxiv.org/abs/2201.08821) |
 
+## License
+
+- The **code** in this repository is licensed under the [MIT License](./LICENSE).
+- The **data** files in the `data/` directory are licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+
+If you wish to use the dataset for commercial purposes, please contact the authors.
 
